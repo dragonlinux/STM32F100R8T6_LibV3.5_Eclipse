@@ -8,31 +8,7 @@
 #include "stm32f10x.h"
 #include "function.h"
 #include "My_usart/my_usart.h"
-/**
- * @brief  精确的毫秒演示函数
- * @param  整数
- * @retval None
- */
-void Delay(__IO uint32_t nTime)
-{
-	TimingDelay = nTime;
-
-	while (TimingDelay != 0)
-		;
-}
-
-/**
- * @brief  Decrements the TimingDelay variable.
- * @param  None
- * @retval None
- */
-void TimingDelay_Decrement(void)
-{
-	if (TimingDelay != 0x00)
-	{
-		TimingDelay--;
-	}
-}
+#include "My_delay/my_delay.h"
 
 void All_LED_light()
 {

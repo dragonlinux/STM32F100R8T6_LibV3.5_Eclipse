@@ -63,7 +63,7 @@ void my_EXTI9_5_Config(void)
 	/* Configure EXTI9 line */
 	EXTI_InitStructure.EXTI_Line = EXTI_Line9; //线路选择
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling; //触发模式
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //触发模式
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE; //启动中断
 	EXTI_Init(&EXTI_InitStructure);
 

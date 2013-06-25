@@ -38,7 +38,7 @@ int main(void)
 	my_EXTI9_5_Config(); //外部中断，下降沿触发
 
 //	All_LED_light();//打开所有的LED
-	printf("OK-->1%s\n", test_buffer);
+//	printf("OK-->1%s\n", test_buffer);
 
 	while (1)
 	{
