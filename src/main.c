@@ -17,6 +17,7 @@
 #include "My_gpio/my_gpio.h"
 #include "My_timer/my_timer.h"
 #include "My_exti/my_exti.h"
+#include "My_pwm/my_pwm.h"
 
 unsigned char LedPB1 = 'b';
 unsigned char test_buffer[] = "I am fine,OK\r\n";
@@ -24,22 +25,29 @@ unsigned char test_buffer[] = "I am fine,OK\r\n";
 int main(void)
 {
 	u8 data = 0;
+	/******************************************************/
 	/* Set the Vector Table base location at 0x08000000 */
-	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);
-	/* Configure the NVIC Preemption Priority Bits */
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0 );
-	SysTick_Configuration();
-
+//	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);
+//	/* Configure the NVIC Preemption Priority Bits */
+//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0 );
+//	SysTick_Configuration();
+//
 	my_Gpio_Init();
 	my_Timer2_Init(); //use Timer2-->Green_LED
 	my_Timer3_Init(); //use Timer3-->Blue_LED
-	my_Usart_Init();
+//	my_Usart_Init();
 	my_EXTI0_Config(); //外部中断，上升沿触发
 	my_EXTI9_5_Config(); //外部中断，下降沿触发
+	/******************************************************/
+
+//	function2_pwm();
+	while (1)
+	{
+
+	}
 
 //	All_LED_light();//打开所有的LED
 //	printf("OK-->1%s\n", test_buffer);
-
 	while (1)
 	{
 		function1(&data);

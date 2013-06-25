@@ -1,5 +1,7 @@
 #include "stm32f10x.h"
 
+#define N_Hz 10000
+
 /**
  * @brief  TIM2初始化
  * @param  None
@@ -13,11 +15,11 @@ void my_Timer2_Init()
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 
 	TIM_DeInit(TIM2 );
-	TIM_TimeBaseStructure.TIM_Period = SystemCoreClock / 10000 - 1;
-	TIM_TimeBaseStructure.TIM_Prescaler = 999;
-	TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
+	TIM_TimeBaseStructure.TIM_Prescaler = 0; //加上原周期的N份，即（1+N）*T为1个周期
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //不要动了
+	TIM_TimeBaseStructure.TIM_Period = (SystemCoreClock / N_Hz) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0; //不要动了
+	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0; //不要动了
 
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
 	//TIM_ClearFlag(TIM2, TIM_FLAG_Update );
@@ -40,11 +42,12 @@ void my_Timer3_Init()
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 
 	TIM_DeInit(TIM3 );
-	TIM_TimeBaseStructure.TIM_Period = 24000000 / 1000 - 1;
-	TIM_TimeBaseStructure.TIM_Prescaler = 999;
-	TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
+
+	TIM_TimeBaseStructure.TIM_Prescaler = 999; //加上原周期的N份，即（1+N）*T为1个周期
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //不要动了
+	TIM_TimeBaseStructure.TIM_Period = (SystemCoreClock / 1000) - 1; //
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0; //不要动了
+	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0; //不要动了
 
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
 	//TIM_ClearFlag(TIM2, TIM_FLAG_Update );
